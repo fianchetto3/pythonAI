@@ -1,5 +1,7 @@
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
+from sklearn.preprocessing import StandardScaler
+from sklearn.pipeline import Pipeline
 from sklearn.metrics import accuracy_score, classification_report
 
 class ModelTrainer:
@@ -7,7 +9,12 @@ class ModelTrainer:
         # tar emot färdig data
         self.df = df
         # Skapar modellen 
-        self.model = LogisticRegression(max_iter=1000)
+       # self.model = LogisticRegression(max_iter=1000)
+        self.model = Pipeline([
+             ("scaler", StandardScaler()),
+             ("clf", LogisticRegression(max_iter=1000))
+        ])
+        
 
     def prepare_data(self):
          # X = alla kolumner utom target
@@ -18,7 +25,7 @@ class ModelTrainer:
          return train_test_split(X,y,test_size=0.2,random_state=42)
         
     def train(self,X_train, y_train):
-            # lär modellen sambanden i träningsdatan
+            # lär modellen sambanden i datan
             self.model.fit(X_train, y_train)
 
     def evaluate(self, X_test, y_test):
@@ -32,3 +39,6 @@ class ModelTrainer:
         report = classification_report(y_test, y_pred)
 
         return accuracy, report
+    
+    def get_model(self):
+         return self.model

@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+from app import AppInterface
 
 
 
@@ -15,7 +16,7 @@ df = processor.load_data()
 df = processor.clean_data()
 
 # 2. Modell
-#  Skapar ett ModelTrainer objekt
+#  skapar ett ModelTrainer objekt
 trainer = ModelTrainer(df)
 
 # förbereder träning och testdata
@@ -29,3 +30,16 @@ accuracy, report = trainer.evaluate(X_test, y_test)
 
 print("Accuracy:", accuracy)
 print(report)
+
+model = trainer.get_model()
+app = AppInterface(trainer.model)
+app.run()
+
+
+coeffs = pd.Series(
+    trainer.model.named_steps["clf"].coef_[0],
+    index=X_train.columns
+).sort_values()
+
+print(coeffs)
+ 
