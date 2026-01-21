@@ -26,6 +26,7 @@ Projektet är byggt med ett OOP tänk och har olika klasser som hanterar olika d
 Projektet är uppdelat i mappar
 
 data/heart.csv - datan
+
 src/ 
 - app.py - app byggd för terminalen
 - data_proccessing.py - hanterar att öppna .csv, rensa (dropna) och läsa filen 
