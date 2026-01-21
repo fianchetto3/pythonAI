@@ -29,17 +29,17 @@ trainer.train(X_train, y_train)
 accuracy, report = trainer.evaluate(X_test, y_test)
 
 print("Accuracy:", accuracy)
-print(report)
+#print(report)
 
 model = trainer.get_model()
 app = AppInterface(trainer.model)
 app.run()
 
 
-coeffs = pd.Series(
-    trainer.model.named_steps["clf"].coef_[0],
-    index=X_train.columns
-).sort_values()
+#coeffs = pd.Series(
+#    trainer.model.named_steps["clf"].coef_[0],
+#    index=X_train.columns
+#).sort_values()
 
-print(coeffs)
+#print(coeffs)
  

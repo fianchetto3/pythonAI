@@ -43,7 +43,7 @@ class AppInterface:
         proba = self.model.predict_proba(user_data)[0][1]
         print(f"Sannolikhet för hjärtsjukdom: {proba:.2f}")
 
-        print("\nResultat:")
+        #print("\nResultat:")
 
 
         if proba >= 0.7:
